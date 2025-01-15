@@ -1,0 +1,22 @@
+#Inputs explained
+#Input is a function
+#It allows a user to input data into a program via a keyboard
+#It can also display strings.
+
+#Here is a variable
+name = "zak"
+#here is a variable with input
+name = input("Enter name: ")
+#This will display "enter name: "
+#The user should then enter a string then press enter
+#The data entered will be stored in the variable
+
+#This data can be displayed later
+print(name)
+
+#Here is an example program:
+
+user_name = input("What is your name? ")
+age = int(input("What is your age? "))
+fav_colour = input("What is your favourite colour? ")
+print(f"Your name is {name}, you are {age} years old and your favourite colour is {fav_colour}")
