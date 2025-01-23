@@ -1,0 +1,9 @@
+guess = 0
+while guess < 10 or guess > 20:
+    guess = int(input("Enter a number"))
+    if guess > 20:
+        print("Too high")
+    elif guess < 10:
+        print("too low")
+
+print("Thank you")
