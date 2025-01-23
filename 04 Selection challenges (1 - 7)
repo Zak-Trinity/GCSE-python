@@ -1,0 +1,60 @@
+#challange 1
+numberone = int(input("Enter a number: "))
+numbertwo = int(input("Enter another number: "))
+
+if numberone < numbertwo:
+    print(f"{numberone}, {numbertwo}")
+elif numbertwo < numberone:
+    print(f" {numbertwo}, {numberone}")
+else:
+    print("error")
+#challange 2
+num = int(input("enter a number under 20: "))
+if num <= 20:
+    print("thank you")
+else:
+    print("Too high")
+#challange 3
+num = int(input("Enter a number between 10 and 20: "))
+if num >= 10 and num <= 20:
+    print("thank you")
+else:
+    print("incorrect")
+#challange 4
+colour = input("enter a colour: ")
+colour = colour.strip().lower()
+if colour == "red":
+    print("i like red too!")
+else:
+    print(f" I dont like {colour}")
+#challange 5
+raining = input("is it raining? ")
+raining = raining.strip().lower()
+if raining == "yes":
+    windy = input("Is it windy? ")
+    windy = windy.strip().lower()
+    if windy == "yes":
+        print("it is too windy for an umbrella")
+    else:
+        print("Take an umbrella")
+else:
+    print("Have a nice day!")
+#challange 6
+age = int(input("What is your age: "))
+if age >= 18:
+    print("you can vote")
+elif age == 17:
+    print("you can learn to drive")
+elif age == 16:
+    print("you can buy a lottery ticket")
+else:
+    print("You can go trick or treating")
+#challange 7
+num = int(input("Enter a number between 10 and 20: "))
+if num >= 10 and num <= 20:
+    print("thank you")
+elif num > 20:
+    print("too high")
+else:
+    print("too low")
+#challange 8
