@@ -1,0 +1,13 @@
+number = 10
+guess = None
+while number != 0:
+    print("There are {number} green bottles hanging on the wall,{number} green bottles hanging on the wall,And if one green bottle should accidentally fall")
+    number -= 1
+    while guess != number:
+        guess = int(input("how many bottles are hanging on the wall"))
+        if guess == number:
+            print("There'll be {number} green bottles hanging on the wall")
+            break
+        else:
+            print("try again")
+        
