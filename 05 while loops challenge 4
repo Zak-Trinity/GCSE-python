@@ -1,0 +1,12 @@
+#Challange 4
+num_people = 0
+breakout = "N"
+choice = None
+
+while choice != breakout:
+    name = input("Who would you like to invite to your party? ").title()
+    num_people += 1
+    print(f"{name} has been invited!")
+    choice = input("Would you like to continue (press n to stop) ").strip().upper()
+
+print(f"{num_people} have been invited!")
