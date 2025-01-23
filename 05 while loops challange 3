@@ -1,0 +1,10 @@
+#Challange 3
+breakout = "Y"
+choice = None
+total = 0
+while breakout != choice:
+    value = int(input("Enter a number: "))
+    total += value
+    choice = input("Do you want to continue (press y to stop) ")
+    choice = choice.strip().upper()
+print(total)
