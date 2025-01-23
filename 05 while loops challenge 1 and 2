@@ -1,0 +1,11 @@
+#Challange 1
+value = 0
+while value < 50:
+    add = int(input("Enter a value: "))
+    value += add
+    
+#Challange 2
+number = 0
+while number < 5:
+    number = int(input("Enter a number: "))
+print(f"the last value you types was {number}")
