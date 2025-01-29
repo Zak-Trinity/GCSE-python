@@ -1,0 +1,9 @@
+#Challange 1
+name = input("What is your name? ")
+for i in range(3):
+    print(name)
+#Challange 2
+name = input("What is your name? ")
+number = int(input("Enter a number: "))
+for i in range(number):
+    print(name)
