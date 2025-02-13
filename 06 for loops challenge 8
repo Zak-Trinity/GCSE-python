@@ -1,0 +1,15 @@
+invite_list = []
+while True:
+    people = int(input("How many people do you want to invite: "))
+    if people > 10:
+        print("Thats too many people, try again")
+    else:
+        break
+for i in range(people):
+    name = input("What is the name of the person you want to send an invite to: ")
+    invite_list.append(name)
+    print(f"{name} has been added!")
+
+print("here are all the people you invited: ")
+for person in invite_list:
+    print(person)
