@@ -1,0 +1,25 @@
+direction = input("Do you want to go up or down? (enter u or d): ").strip().lower()
+u_limit = 0
+l_limit = 0
+
+if direction == "u":
+    u_limit = int(input("What number do you want to go up to? "))
+    l_limit = int(input("What number are you at now: "))
+    if l_limit >= u_limit:
+        while True:
+            l_limit = int(input("That was an invalid number, enter another number: "))
+            if l_limit < u_limit:
+                break
+    for i in range(l_limit, (u_limit + 1), 1):
+        print(i)
+
+elif direction == "d":
+    l_limit = int(input("What number do you want to go down to? "))
+    u_limit = int(input("What number are you at now: "))
+    if l_limit >= u_limit:
+        while True:
+            u_limit = int(input("That was an invalid number, enter another number: "))
+            if l_limit < u_limit:
+                break
+    for i in range(u_limit, (l_limit - 1), -1):
+        print(i)
