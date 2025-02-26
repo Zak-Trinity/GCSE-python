@@ -1,0 +1,68 @@
+breakout = None
+#Challange 1
+name = input("Enter your name: ")
+print(len(name))
+
+print("-----------")
+
+#Challange 2
+first_name = input("Enter your first name: ")
+last_name = input("Enter your last name: ")
+full_name = first_name + " " + last_name
+print(full_name)
+print(len(full_name))
+
+print("-----------")
+
+#Challange 3
+fname = input("Enter your first name: ").lower().strip()
+lname = input("Enter your last name: ").lower().strip()
+print("Hello {} {}!".format(fname.title(), lname.title()))
+
+print("-----------")
+
+#Challange 4
+ryhme = input("Enter a nursery ryhme: ")
+length = len(ryhme)
+print("This has {} in it".format(length))
+
+start = int(input("Enter a starting number: "))
+end = int(input("Enter an ending number: "))
+print(ryhme[start:end])
+
+print("-----------")
+
+#Challange 5
+word = input("Enter a word: ").upper()
+print(word)
+
+print("-----------")
+
+#Challange 6
+
+name = input("Enter your name: ")
+if len(name) < 5:
+    last_name = input("Enter your last name: ")
+    full_name = name + last_name
+    print(name.upper())
+else:
+    print(name.lower())   
+
+print("-----------")
+
+#Challange 7
+
+
+vowels = ["a", "e", "i", "o, "u""]
+word = input("Enter a word: ")
+for vowel in vowels:
+    if word[0] == vowel:
+        word_list = list(word)
+        word_list.pop(0)
+        final_word = "".join(word_list)
+        print(final_word)
+
+print("-----------")
+
+        
+#challange 8
