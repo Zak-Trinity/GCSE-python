@@ -1,0 +1,83 @@
+#Current bugs - choice from menu does not work
+import random
+print("You have 5 guesses to guess the number, i will tell you if you are above or below")
+wins = 0
+loses = 0
+check = True
+#Functions
+def menu():
+
+    print("""1. New game:
+2. view history:
+3. View the menu:
+4. Exit:""")
+
+def new_game(win, lose):
+
+    inc = 0
+    while True:
+        print("""Here are the different skill levels
+Easy
+Medium
+Hard""")
+        difficulty = input("What do you want to do: ").strip().lower()
+        if difficulty == "easy":
+            number = random.randint(1, 100)
+            break
+        elif difficulty == "medium":
+            number = random.randint(1, 1000)
+            break
+        elif difficulty == "hard":
+            number = random.randint(1, 10000)
+            break
+    for i in range(0, 10, 1):
+        inc += 1
+        current_choice = int(input("What is your guess: "))
+        print("")
+        #Remove this print later
+        print(number)
+        if current_choice > number:
+            print("Too high")
+            if inc == 10:
+                print("You have run out of goes")
+                break
+        elif current_choice < number:
+            print("Too low")
+            if inc == 10:
+                print("You have run out of goes")
+                break
+        elif current_choice == number:
+            print("Well done, it took you {} goes!".format(inc))
+            win = win + 1
+            break
+
+    print("")
+    return win, lose
+
+#Remove this
+
+#Choice from the menu
+
+while check == True:
+    menu()
+    d = input("What do you want to do: ").strip().lower()
+
+    if d == "1" or d == "one":
+        print("")
+        wins, loses = new_game(wins, loses)
+        print("")
+
+    elif d == "2" or d == "two":
+        print("")
+        print(f"You have won {wins} games and lost {loses} games.")
+        print("")
+
+    elif d == "3" or d == "three":
+        print("")
+        menu()
+        print("")
+    
+    elif d == "4" or d == "four":
+        print("Thanks for playing")
+        check = False
+
