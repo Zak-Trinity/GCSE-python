@@ -10,51 +10,84 @@ def menu():
     print("""1. New game:
 2. view history:
 3. View the menu:
-4. Exit:""")
+4. Info / settings:
+5. Exit:""")
 
 def new_game(win, lose):
-
+    current_choice = 0
     inc = 0
     while True:
+        #Choosing level
         print("""Here are the different skill levels
 Easy
 Medium
-Hard""")
+Hard
+Custom""")
         difficulty = input("What do you want to do: ").strip().lower()
-        if difficulty == "easy":
+        if difficulty == "easy" or difficulty == "1":
             number = random.randint(1, 100)
             break
-        elif difficulty == "medium":
+        elif difficulty == "medium" or difficulty == "2":
             number = random.randint(1, 1000)
             break
-        elif difficulty == "hard":
+        elif difficulty == "hard" or difficulty == "3":
             number = random.randint(1, 10000)
             break
+        elif difficulty == "/difficulty_level":
+            print("""
+Easy mode is between numbers 1 - 100
+Medium mode is between 1 - 1000
+Hard mode is between 1 - 10000
+            """)
+        elif difficulty == "custom" or difficulty == "4":
+            top_num = int(input("What do you want the top number to be? "))
+            number = random.randint(1, top_num)
+            break
+            #Game
     for i in range(0, 10, 1):
         inc += 1
-        current_choice = int(input("What is your guess: "))
-        print("")
-        #Remove this print later
-        print(number)
-        if current_choice > number:
-            print("Too high")
-            if inc == 10:
-                print("You have run out of goes")
-                break
-        elif current_choice < number:
-            print("Too low")
-            if inc == 10:
-                print("You have run out of goes")
-                break
-        elif current_choice == number:
-            print("Well done, it took you {} goes!".format(inc))
-            win = win + 1
-            break
+        left = 10 - inc
 
+        try:
+            current_choice = int(input("What is your guess: "))
+            print("")
+            if current_choice == "":
+                print(number)
+            elif current_choice > number:
+                print("Too high.")
+                if inc == 10:
+                    print("You have run out of goes")
+                    lose += 1
+                    break
+                elif left > 1:
+                    print(f"you have {left} atempts left")
+                elif left == 1:
+                    print("This is your last chance")
+            elif current_choice < number:
+                print("Too low")
+                if inc == 10:
+                    print("You have run out of goes, the answer was {}".format(number))
+                    break
+                elif left > 1:
+                    print(f"you have {left} atempts left")
+                elif left == 1:
+                    print("This is your last chance")
+            elif current_choice == number:
+                print("Well done, it took you {} goes!".format(inc))
+                win = win + 1
+                break
+        except ValueError:
+            print("invalid input")
+            print("")
+            
+        
+
+        
+    
     print("")
     return win, lose
 
-#Remove this
+
 
 #Choice from the menu
 
@@ -76,8 +109,42 @@ while check == True:
         print("")
         menu()
         print("")
-    
-    elif d == "4" or d == "four":
+
+    elif d == "4" or d == "four" or d == "/portal":
+        #Remeber to keep updating this
+        print("""Welcome to the settings menu! Here you will be able to see all the
+commands, if you want more info on the commands use "/help(command name without /)".  
+All comands case in lower case.
+        
+Here are all the commands:
+/portal
+/difficulty_level
+""")
+        while True:
+            #Help zone
+            extra_help = input("Do you want more info on a command (write e to exit) ")
+            extra_help = extra_help.strip().lower()
+            #Breakout function
+            if extra_help == "e":
+                break
+            elif extra_help == "/help(portal)" or extra_help == "/help(/portal)":
+                print("""/portal can be used whilst in the menu, it will bring up
+settings / info.  
+""")
+            elif extra_help == "/help(difficulty_level)":
+                print("""
+/difficulty_level can be used in the menu or when selecting
+The difficulty in the game. It will show you the number range of
+each difficulty level.
+""")
+
+    elif d == "5" or d == "five":
         print("Thanks for playing")
         check = False
+    elif d == "/difficulty_level":
+        print("""
+Easy mode is between numbers 1 - 100
+Medium mode is between 1 - 1000
+Hard mode is between 1 - 10000
+""")
 
