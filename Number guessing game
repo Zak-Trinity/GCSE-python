@@ -1,58 +1,73 @@
-#Current bugs - choice from menu does not work
+#Current bugs - add multilplayer
 import random
-print("You have 5 guesses to guess the number, i will tell you if you are above or below")
 wins = 0
 loses = 0
+max = 10
+he = 0
+hm = 0
+hh = 0
 check = True
 #Functions
 def menu():
 
-    print("""1. New game:
-2. view history:
-3. View the menu:
-4. Info / settings:
-5. Exit:""")
+    print("""1. New game (Fixed attempt variant):
+2. New game(Max guesses variant)
+3. Multiplayer (Fixed attempt variant)
+4. Multiplayer(Max guesses variant)
+5. view history:
+6. Change the number of turns you have per game:
+7. Info / settings:
+8. Explanation of fixed attempt and max guesses:
+9. Exit:""")
 
-def new_game(win, lose):
+#New game (Fixed attempt variant)
+def new_game_fa(win, lose, max):
     current_choice = 0
     inc = 0
+    print(f"""You will have {max} guesses to guess the number. I will tell you if your
+guess was higher or lower than the number.""")
     while True:
         #Choosing level
         print("""Here are the different skill levels
-Easy
-Medium
-Hard
-Custom""")
+- Easy
+- Medium
+- Hard
+- Custom""")
         difficulty = input("What do you want to do: ").strip().lower()
+        print("")
         if difficulty == "easy" or difficulty == "1":
+            print("I will think of a random number between 1 and 100")
             number = random.randint(1, 100)
             break
         elif difficulty == "medium" or difficulty == "2":
+            print("I will think of a random number between 1 and 1000")
             number = random.randint(1, 1000)
             break
         elif difficulty == "hard" or difficulty == "3":
+            print("I will think of a random number between 1 and 10000")
             number = random.randint(1, 10000)
             break
-        elif difficulty == "/difficulty_level":
-            print("""
-Easy mode is between numbers 1 - 100
-Medium mode is between 1 - 1000
-Hard mode is between 1 - 10000
-            """)
         elif difficulty == "custom" or difficulty == "4":
             top_num = int(input("What do you want the top number to be? "))
             number = random.randint(1, top_num)
             break
             #Game
-    for i in range(0, 10, 1):
+    for i in range(0, max, 1):
         inc += 1
-        left = 10 - inc
+        left = max - inc
 
         try:
             current_choice = int(input("What is your guess: "))
             print("")
-            if current_choice == "":
-                print(number)
+            if current_choice < 0:
+                command_option = input("What command do you want to do? ")
+                if command_option == "/showscore":
+                    print(f"the number was {number}")
+                    lose += 1
+                    break
+                elif command_option == "/giveup":
+                    lose += 1
+                    break
             elif current_choice > number:
                 print("Too high.")
                 if inc == 10:
@@ -65,7 +80,7 @@ Hard mode is between 1 - 10000
                     print("This is your last chance")
             elif current_choice < number:
                 print("Too low")
-                if inc == 10:
+                if inc == max:
                     print("You have run out of goes, the answer was {}".format(number))
                     break
                 elif left > 1:
@@ -77,8 +92,9 @@ Hard mode is between 1 - 10000
                 win = win + 1
                 break
         except ValueError:
-            print("invalid input")
-            print("")
+                print("invalid input")
+                print("")
+                inc -=1
             
         
 
@@ -87,7 +103,186 @@ Hard mode is between 1 - 10000
     print("")
     return win, lose
 
+#New game (Max guess variant)
 
+def newgame_mg(highscore_e, highscore_m, highscore_h):
+    inc = 0
+    number = 0
+    score = 0
+    print("""In this game mode you will need to guess the right number as many times as
+you can in 50 goes.""")
+    game_length = 50
+    while True:
+        difficulty = input("""
+What difficulty do you want to play at?
+- Easy (1 - 100)
+- Medium (1 - 1000)
+- Hard (1 - 10000)
+""").strip().lower()
+        if difficulty == "easy" or difficulty == "1":
+            number = random.randint(1, 100)
+            break
+        elif difficulty == "medium" or difficulty == "2":
+            number = random.randint(1, 1000)
+            break
+        elif difficulty == "hard" or difficulty == "3":
+            number = random.randint(1,10000)
+            break
+            #game loop
+    for i in range(1, game_length+1, 1):
+        inc += 1
+        left = game_length - inc
+
+        try:
+            choice = (int(input("What is your guess: ")))
+            if choice > number:
+                print("Too high")
+            elif choice < number:
+                print("Too low")
+            elif choice == number:
+                score += 1
+                print("Correct")
+                if difficulty == "easy" or difficulty == "1":
+                    number = random.randint(1, 100)
+                elif difficulty == "medium" or difficulty == "2":
+                    number = random.randint(1, 1000)
+                elif difficulty == "hard" or difficulty == "3":
+                    number = random.randint(1,10000)
+        except ValueError:
+            print("please enter a valid input")
+            inc -= 1
+        print(f"You have guessed {score} numbers and have {left} guesses left")
+        
+    print("Well done! You guessed {} numbers correctly".format(score))
+    if difficulty == "easy" or difficulty == "1" and score > highscore_e:
+        highscore_e = score
+    elif difficulty == "medium" or difficulty == "2" and score > highscore_m:
+        highscore_m = score
+    elif difficulty == "hard" or difficulty == "3" and score > highscore_h:
+        highscore_h = score
+
+    return highscore_e, highscore_m, highscore_h
+
+#Multiplayer (Fixed attempt variant)
+def multiplayer_game_fa():
+    inc1 = 0
+    max = 10
+    inc2 = 0
+    player1w = 0
+    player1l = 0
+    player2w = 0
+    player2l = 0
+    breakinc = 0
+    check_spaceinc = True
+    while True:
+        try:
+            max = int(input("How many guesses do you want to have? "))
+            break
+        except ValueError:
+            print("invalid input, enter a number.")
+
+    left2 = inc2 - max
+    left1 = max - inc1
+
+    while True:
+        try:
+            range = int(input("What is the highest number you want to allow? "))
+            break
+        except ValueError:
+            print("invalid input, enter a number")
+    player1 = input("player 1, enter your name: ")
+    player2 = input("player 2, enter your name: ")
+    print(f"{player2} look away!")
+    while True:
+        try:
+            player2_number = int(input(f"""{player1} enter the number you want
+{player2} to guess. It has to be between 1 and {range}: """))
+            if player2_number > 0 and player2_number < range:
+                break
+            else:
+                print("This number is not in the agreed range.")
+        except ValueError:
+            print("Invalid input, enter a number")
+            
+    while check_spaceinc == True:
+        breakinc += 1
+        print(" ")
+        if breakinc >= 55:
+            check_spaceinc = False
+
+    print(f"{player2} it is your go to start guessing")
+    while inc2 < max:
+        inc2 += 1
+        try:
+            current_choice = int(input("What is your guess: "))
+            print("")
+            if current_choice < 0:
+                command_option = input("What command do you want to do? ")
+                if command_option == "/showscore":
+                    print(f"the number was {player2_number}")
+                    player2l += 1
+                    break
+                elif command_option == "/giveup":
+                    player2l += 1
+                    break
+            elif current_choice > player2_number:
+                print("Too high.")
+                if inc2 == 10:
+                    print("You have run out of goes")
+                    player2l += 1
+                    break
+                elif left2 > 1:
+                    print(f"you have {left2} atempts left")
+                elif left2 == 1:
+                    print("This is your last chance")
+            elif current_choice < player2_number:
+                print("Too low")
+                if inc2 == max:
+                    print(f"You have run out of goes, the answer was {player2_number}")
+                    break
+                elif left2 > 1:
+                    print(f"you have {left2} atempts left")
+                elif left2 == 1:
+                    print("This is your last chance")
+            elif current_choice == player2_number:
+                print("Well done, it took you {} goes!".format(inc2))
+                player2w = player2w + 1
+                break
+        except ValueError:
+                print("invalid input")
+                print("")
+                inc2 -=1
+        
+
+    while True:
+        try:
+            player1_number = int(input(f"""{player2} enter the number you want
+{player1} to guess. It has to be between 1 and {range}: """))
+            if player1_number > 0 and player1_number < range:
+                break
+            else:
+                print("This number is not in the  agreed range.")
+        except ValueError:
+            print("Invalid input, enter a number")
+
+
+#multiplayer (max guess variant)
+
+
+
+multiplayer_game_fa()
+#explanation
+def explanation():
+    print("""
+There are 2 main variant in this game. Fixed attempt and max guesses.
+
+Fixed attempt - You have to guess a random number in a certain amount of goes.
+                If you guess it correctly in the goes you have you win, if you
+                dont you lose.
+
+Max guesses - You have 50 goes to guess as many random numbers as you can. They
+              are generated 1 by 1.
+""")
 
 #Choice from the menu
 
@@ -97,28 +292,41 @@ while check == True:
 
     if d == "1" or d == "one":
         print("")
-        wins, loses = new_game(wins, loses)
+        wins, loses = new_game_fa(wins, loses, max)
         print("")
 
     elif d == "2" or d == "two":
         print("")
+        he, hm, hh = newgame_mg(he, hm, hh)
+
+    elif d == "5" or d == "five":
+        print("")
         print(f"You have won {wins} games and lost {loses} games.")
+        print(f"Your high score is {he} on easy mode, {hm} on medium and {hh} on hard")
         print("")
 
-    elif d == "3" or d == "three":
+    elif d == "6" or d == "six":
         print("")
-        menu()
-        print("")
+        while True:
+            try:
+                max = int(input("How many goes do you want to have per game: "))
+                print("")
+                break
+            except ValueError:
+                print("That is not a valid input, try again. ")
+            print("")
 
-    elif d == "4" or d == "four" or d == "/portal":
+    elif d == "7" or d == "seven" or d == "/portal":
         #Remeber to keep updating this
         print("""Welcome to the settings menu! Here you will be able to see all the
-commands, if you want more info on the commands use "/help(command name without /)".  
+commands, if you want more info on the commands use the command name
 All comands case in lower case.
         
 Here are all the commands:
-/portal
-/difficulty_level
+/edit_winlose
+- menu (use /help(-menu)).
+/showscore
+/giveup
 """)
         while True:
             #Help zone
@@ -127,24 +335,51 @@ Here are all the commands:
             #Breakout function
             if extra_help == "e":
                 break
-            elif extra_help == "/help(portal)" or extra_help == "/help(/portal)":
-                print("""/portal can be used whilst in the menu, it will bring up
-settings / info.  
-""")
-            elif extra_help == "/help(difficulty_level)":
-                print("""
-/difficulty_level can be used in the menu or when selecting
-The difficulty in the game. It will show you the number range of
-each difficulty level.
-""")
+                #help portal
 
-    elif d == "5" or d == "five":
+            elif extra_help == "/edit_winlose":
+                print("""This command will allow you to edit your win lose ratio.
+This can be used if you have played this game before but exited the game.
+
+The game does not save your win lose ratio so if you want to keep your win
+/ lose ratio you should look at it before you quit.
+
+This can be used whilst in the menu. """)
+            elif extra_help == "- menu" or extra_help == "-menu":
+                print("""
+The minus menu will allow you to use the /showscore and
+/giveup commands whilst you are playing a game.
+
+To use this you enter a minus number whilst playing the game.
+You will then be asked to enter a command. If you do this command
+then the game will end and you will lose the game.
+
+This can only be done while playing the game. """)
+            elif extra_help == "/showscore":
+                print("""
+This can only be accessed after going into the minus menu during
+a game. This command will show you the score of the game you are
+currently playing. If you use this command then the game will end
+and you will lose the game""")
+            elif extra_help == "/giveup":
+                print("""
+This can only be done during a game and whilst you are in the
+minus menu. This will end the game regardless of how many goes
+you have left and will mean that you lose the game. """)
+
+    #rest of the menu + all of the commands.
+    elif d == "9" or d == "nine" or d == "/break":
         print("Thanks for playing")
         check = False
+    elif d == "8" or d == "eight":
+        explanation()
     elif d == "/difficulty_level":
         print("""
 Easy mode is between numbers 1 - 100
 Medium mode is between 1 - 1000
 Hard mode is between 1 - 10000
 """)
-
+    elif d == "/edit_winlose":
+        wins += int(input("How many wins would you like to add: "))
+        loses += int(input("How many loses would you like to add: "))
+        print("You have know won {} and lost {}".format(wins, loses))
