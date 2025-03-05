@@ -174,6 +174,8 @@ def multiplayer_game_fa():
     player2l = 0
     breakinc = 0
     check_spaceinc = True
+    breakin = 0
+    c = True
     while True:
         try:
             max = int(input("How many guesses do you want to have? "))
@@ -192,12 +194,12 @@ def multiplayer_game_fa():
             print("invalid input, enter a number")
     player1 = input("player 1, enter your name: ")
     player2 = input("player 2, enter your name: ")
-    print(f"{player2} look away!")
+    print(f"{player2.title()} look away!")
     while True:
         try:
-            player2_number = int(input(f"""{player1} enter the number you want
-{player2} to guess. It has to be between 1 and {range}: """))
-            if player2_number > 0 and player2_number < range:
+            player2_number = int(input(f"""{player1.title()} enter the number you want
+{player2.title()} to guess. It has to be between 1 and {range}: """))
+            if player2_number > 0 and player2_number < range + 1:
                 break
             else:
                 print("This number is not in the agreed range.")
@@ -210,9 +212,10 @@ def multiplayer_game_fa():
         if breakinc >= 55:
             check_spaceinc = False
 
-    print(f"{player2} it is your go to start guessing")
+    print(f"{player2.title()} it is your go to start guessing")
     while inc2 < max:
         inc2 += 1
+        left2 = max - inc2
         try:
             current_choice = int(input("What is your guess: "))
             print("")
@@ -256,8 +259,8 @@ def multiplayer_game_fa():
 
     while True:
         try:
-            player1_number = int(input(f"""{player2} enter the number you want
-{player1} to guess. It has to be between 1 and {range}: """))
+            player1_number = int(input(f"""{player2.title()} enter the number you want
+{player1.title()} to guess. It has to be between 1 and {range}: """))
             if player1_number > 0 and player1_number < range:
                 break
             else:
@@ -266,11 +269,92 @@ def multiplayer_game_fa():
             print("Invalid input, enter a number")
 
 
+    while c == True:
+        breakin += 1
+        print(" ")
+        if breakin >= 55:
+            c = False
+
+    print(f"{player1} it is your go to start guessing")
+    while inc1 < max:
+        inc1 += 1
+        left1 = max - inc1
+
+        try:
+            current_choice = int(input("What is your guess: "))
+            print("")
+            if current_choice < 0:
+                command_option = input("What command do you want to do? ")
+                if command_option == "/showscore":
+                    print(f"the number was {player1_number}")
+                    player1l += 1
+                    break
+                elif command_option == "/giveup":
+                    player1l += 1
+                    break
+            elif current_choice > player1_number:
+                print("Too high.")
+                if inc1 == 10:
+                    print("You have run out of goes")
+                    player1l += 1
+                    break
+                elif left1 > 1:
+                    print(f"you have {left1} atempts left")
+                elif left1 == 1:
+                    print("This is your last chance")
+            elif current_choice < player1_number:
+                print("Too low")
+                if inc1 == max:
+                    print(f"You have run out of goes, the answer was {player1_number}")
+                    break
+                elif left1 > 1:
+                    print(f"you have {left1} atempts left")
+                elif left1 == 1:
+                    print("This is your last chance")
+            elif current_choice == player1_number:
+                print("Well done, it took you {} goes!".format(inc1))
+                player1w = player1w + 1
+                break
+        except ValueError:
+                print("invalid input")
+                print("")
+                inc1 -= 1
+
+
+    print("")
+    if player1w > player2w:
+        print(f"Well done {player1.title()}, you win!")
+    elif player1w < player2w:
+        print(f"Well done {player2.title()}, you win!")
+    elif player1w == 1 and player2w == 1:
+        if inc1 > inc2:
+            print(f"""You both guessed each others number, but {player2.title()} you
+did it faster so you win!""")
+        elif inc1 < inc2:
+            print(f"""You both guessed each others number, but {player1.title()} you
+did it faster so you win!""")
+        elif inc1 == inc2:
+            print("""It took both of you the same amount of goes to guess each others
+number so it is a draw.""")
+    elif player1l == 1 and player2l == 1:
+        print("You both failed to guess each others number so you both lose")
+    print("")
+
+
+
+
+
 #multiplayer (max guess variant)
+def multiplayer_game_mg():
+    print("")
 
 
 
-multiplayer_game_fa()
+
+
+
+
+
 #explanation
 def explanation():
     print("""
@@ -298,6 +382,9 @@ while check == True:
     elif d == "2" or d == "two":
         print("")
         he, hm, hh = newgame_mg(he, hm, hh)
+
+    elif d == "3" or d == "three":
+        multiplayer_game_fa()
 
     elif d == "5" or d == "five":
         print("")
