@@ -1,5 +1,6 @@
 #Current bugs - add multilplayer
 import random
+
 wins = 0
 loses = 0
 max = 10
@@ -192,8 +193,8 @@ def multiplayer_game_fa():
             break
         except ValueError:
             print("invalid input, enter a number")
-    player1 = input("player 1, enter your name: ")
-    player2 = input("player 2, enter your name: ")
+    player1 = input("player 1, enter your name: ").strip()
+    player2 = input("player 2, enter your name: ").strip()
     print(f"{player2.title()} look away!")
     while True:
         try:
@@ -259,7 +260,8 @@ def multiplayer_game_fa():
 
     while True:
         try:
-            player1_number = int(input(f"""{player2.title()} enter the number you want
+            player1_number = int(input(f"""{player1.title()} look away!
+{player2.title()} enter the number you want
 {player1.title()} to guess. It has to be between 1 and {range}: """))
             if player1_number > 0 and player1_number < range:
                 break
@@ -275,7 +277,7 @@ def multiplayer_game_fa():
         if breakin >= 55:
             c = False
 
-    print(f"{player1} it is your go to start guessing")
+    print(f"{player1.title()} it is your go to start guessing")
     while inc1 < max:
         inc1 += 1
         left1 = max - inc1
@@ -346,15 +348,56 @@ number so it is a draw.""")
 
 #multiplayer (max guess variant)
 def multiplayer_game_mg():
+    player1nums = []
+    player2nums =[]
+    del_list_p2 = []
+    print("")
+    player1 = input("Player 1 enter your name: ").strip().title()
+    player2 = input("Player 2 enter your name: ").strip().title()
+    print("You will have 50 goes to guess each others numbers! ")
+    while True:
+        try:
+            range = int(input("Enter the range you want to play in: "))
+            break
+        except ValueError:
+            print("invalid input")
+    print("")
+    print(f"You will be allowed to play between 1 and {range}")
+    print(f"{player2} look away!")
     print("")
 
+    p2n_temp = input(f"""{player1} enter some numbers, make sure there is ONLY a single 
+space between them: """)
+    player2nums = p2n_temp.split(" ")
+        #check if it is a number
+    for nums in player2nums:
+        try:
+            nums = int(nums)
+        except ValueError:
+            player2nums.remove(nums)
+
+        #check if this is in the range
+    for nums2 in player2nums:
+        try:
+            if int(nums2) < 0 or int(nums2) > 100:
+                del_list_p2.append(nums2)
+        except ValueError:
+            print("Error")
+
+    player2nums = list(set(player2nums) - set(del_list_p2))
+    
+    #remove below
+    print(del_list_p2)
+    print(player2nums)
+    #Convert play2nums to all ints
+    
 
 
 
 
 
 
-
+multiplayer_game_mg()
 #explanation
 def explanation():
     print("""
