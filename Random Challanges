@@ -1,0 +1,102 @@
+#Challange 1
+import random
+num = random.randint(1, 1000)
+print(num)
+print("")
+print("-----------------")
+print("")
+#Challange 2
+colours = ["Red", "Yellow", "Green", "Blue", "Orange"]
+color = random.choice(colours)
+print(color)
+print("")
+print("-----------------")
+print("")
+#Challnge 3
+heads_tails = ["heads", "tails"]
+coin = random.choice(heads_tails)
+guess = input("Do you think it was heads or tails ").strip().lower()
+if guess == coin:
+    print("Correct!")
+else:
+    if coin == "heads":
+        print("Incorrect, it was heads")
+    elif coin == "tails":
+        print("Incorrect, it was tails")
+
+print("")
+print("-----------------")
+print("")
+
+#challange 4, 5,6 and 7
+inc = 0
+num = random.randint(1,5)
+while True:
+    try:
+        guess = int(input("What is your guess: "))
+        inc += 1
+        if guess == num:
+            print(f"Correct! it took you {inc} goes")
+            break
+        elif guess > num:
+            print("Too high")
+        else:
+            print("Too low")
+    except ValueError:
+        print("Invalid input")
+
+#Challange 8
+score = 0
+for i in range(5):
+    n1 = random.randint(1, 20)
+    n2 = random.randint(1, 20)
+    n3 = random.randint(1, 20)
+    n4 = random.randint(1, 20)
+    n5 = random.randint(1, 20)
+    total = n1 + n2 + n3 + n4 + n5
+    try:
+        guess = int(input(f"{n1} + {n2} + {n3} + {n4} + {n5} = "))
+        if guess == total:
+            print("Correct!")
+            score += 1
+        else:
+            print("incorrect, it was {}".format(total))
+    except ValueError:
+        print("Invalid input")
+
+print(f"You got {score} questions right!")
+
+print("")
+print("-----------------")
+print("")
+
+#Challange 9
+colours = ["red", "orange", "green", "blue", "yellow"]
+print(f"I will chose a random colour from {colours[0].title()}, {colours[1].title()}, {colours[2].title()}, {colours[3].title()}, {colours[4].title()}")
+colour_choice = random.choice(colours)
+red_hint = ["You must be RED with anger", "Have a break and eat a RED apple", "You are so close, you are glowing RED"]
+orange_hint = ["You should have a break and eat an ORANGE", "Why dont you look at the window and at the ORANGE sunset", "You are ORANGE with rage"]
+green_hint = ["You are GREEN with envy", "You need to go outside and look at the GREEN grass", "You should have a GREEN apple"]
+blue_hint = ["You are probably feeling BLUE", "Why dont you take a drink of BLUE water", "You should study the BLUE text a bit more carefully"]
+yellow_hint = ["You are YELLOW with rage", "Why dont you look at the YELLOW sun", "You should eat a YELLOW banana"]
+
+while True:
+    guess = input("What colour am i thinking of? ")
+    if guess == colour_choice:
+        print("Correct!")
+        break
+    else:
+        if colour_choice == "red":
+            print(random.choice(red_hint))
+            
+        elif colour_choice == "orange":
+            print(random.choice(orange_hint))
+            
+        elif colour_choice == "green":
+            print(random.choice(green_hint))
+
+        elif colour_choice == "blue":
+            print(random.choice(blue_hint))
+            
+        elif colour_choice == "yellow":
+            print(random.choice(yellow_hint))
