@@ -1,0 +1,17 @@
+cars = []
+truth_check = True
+
+while truth_check == True:
+    inp = input("Enter a car brand, or press 'x' to exit: ").strip().lower()
+    if inp == "x":
+        truth_check = False
+        print("Exiting ...")
+    else:
+        cars.append(inp)
+        print(inp + " has been added!")
+
+print("your list is:")
+for cat in cars:
+    print(cat)
+        
+
