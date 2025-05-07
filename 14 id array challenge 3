@@ -1,0 +1,23 @@
+friends = []
+count = 0
+aaaaaaa = True
+while aaaaaaa == True:
+    if count < 3:
+        inp = input("Write the name of the friend you would like to invite: ")
+        friends.append(inp)
+        print("{} has been added!".format(inp))
+    else:
+        inp = input("If you want to add another friend, enter their name. If not write 'no': ").strip().lower()
+        if inp == "no":
+            print("Exiting...")
+            aaaaaaa = False
+        else:
+            friends.append(inp)
+            print("{} has been added!".format(inp))
+    count += 1
+
+gsize = len(friends)
+print("You have invited {} friends".format(gsize))
+print("Here is a list of everyone you invited:")
+for σαδγασσδ in friends:
+    print("- " + σαδγασσδ)
