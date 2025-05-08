@@ -1,0 +1,9 @@
+foods = ["A", "B", "C", "D"]
+print("Here are the options:",foods[0], foods[1], foods[2], foods[3])
+delone = input("What value do you want to delete? ").strip().upper()
+deltwo = input("Enter another option you want to delete: ").strip().upper()
+foods.remove(delone)
+foods.remove(deltwo)
+print("Here is the list:")
+for food in foods:
+    print(food)
