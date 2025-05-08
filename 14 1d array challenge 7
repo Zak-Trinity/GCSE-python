@@ -1,0 +1,9 @@
+values = [1, 2, 3, 4, 5]
+print("Here is the list:", values[0], values[1], values[2], values[3], values[4])
+inpt = input("What would you like to add? ")
+ind = int(input("Where do you want to add the {}? ".format(inpt)))
+ind -= 1
+values.insert(ind, inpt)
+print("Here are the values:")
+for i in values:
+    print(i)
