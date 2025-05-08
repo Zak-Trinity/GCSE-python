@@ -1,0 +1,65 @@
+import random
+
+row1 = [" ", " ", " "]
+row2 = [" ", " ", " "]
+row3 = [" ", " ", " "]
+def gridraw(row1, row2, row3):
+    print(f"""{row1[0]} | {row1[1]} | {row1[2]}
+---------
+{row2[0]} | {row2[1]} | {row2[2]}
+---------
+{row3[0]} | {row3[1]} | {row3[2]}""")
+
+
+def wincheck(row1, row2, row3, winu, wino):
+    if row1[0] == "x" and row1[1] == "x" and row1[2] == "x":
+        winu = True
+    elif row2[0] == "x" and row2[1] == "x" and row2[2] == "x":
+        winu = True
+    elif row3[0] == "x" and row3[1] == "x" and row3[2] == "x":
+        winu = True
+    elif row1[0] == "x" and row2[0] == "x" and row3[0] == "x":
+        winu = True
+    elif row1[1] == "x" and row2[1] == "x" and row3[1] == "x":
+        winu = True
+    elif row1[2] == "x" and row2[2] == "x" and row3[2] == "x":
+        winu = True
+    elif row1[0] == "x" and row2[1] == "x" and row3[2] == "x":
+        winu = True
+    elif row1[2] == "x" and row2[1] == "x" and row3[0] == "x":
+        winu = True
+    else:
+        winu = False
+
+    if row1[0] == "o" and row1[1] == "o" and row1[2] == "o":
+        wino = True
+    elif row2[0] == "o" and row2[1] == "o" and row2[2] == "o":
+        wino = True
+    elif row3[0] == "o" and row3[1] == "o" and row3[2] == "o":
+        wino = True
+    elif row1[0] == "o" and row2[0] == "o" and row3[0] == "o":
+        wino = True
+    elif row1[1] == "o" and row2[1] == "o" and row3[1] == "o":
+        wino = True
+    elif row1[2] == "o" and row2[2] == "o" and row3[2] == "o":
+        wino = True
+    elif row1[0] == "o" and row2[1] == "o" and row3[2] == "o":
+        wino = True
+    elif row1[2] == "o" and row2[1] == "o" and row3[0] == "o":
+        wino = True
+    else:
+        wino = False
+
+    return(winu, wino)
+
+winu = False
+wino = False
+
+winu, wino = wincheck(row1, row2, row3, winu, wino)
+print(winu, wino)
+
+
+pstart = input("Woud you like to start? (press y for start or anything else to not start): ")
+while winu == False and wino == False:
+    if pstart:
+        break
