@@ -1,0 +1,21 @@
+checks = True
+shows = ["a", "b", "c", "d"]
+while checks == True:
+    print("Here are all the values in the list")
+    for show in shows:
+        print("- {}".format(show))
+    yorno = input("Would you like to add a new value, 'yes' or 'no': ").strip().lower()
+    if yorno == "no" or yorno == "n":
+        print("exiting...")
+        checks = False
+    elif yorno == "yes" or yorno == "y":
+        newv = input("What is the value you want to add: ")
+
+        newp = int(input("What position do you want to add it: "))
+        newp -= 1
+        shows.insert(newp, newv)
+
+print("")
+print("")
+for show in shows:
+    print("- {}".format(show))
