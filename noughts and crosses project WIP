@@ -1,6 +1,7 @@
 import random
-
-row1 = [" ", " ", " "]
+validmove = False
+validmovex = False
+row1 = ["x", " ", " "]
 row2 = [" ", " ", " "]
 row3 = [" ", " ", " "]
 def gridraw(row1, row2, row3):
@@ -59,7 +60,46 @@ winu, wino = wincheck(row1, row2, row3, winu, wino)
 print(winu, wino)
 
 
-pstart = input("Woud you like to start? (press y for start or anything else to not start): ")
+pstart = input("Woud you like to start? (press y for start or anything else to not start): ").strip().lower()
 while winu == False and wino == False:
-    if pstart:
-        break
+    if pstart == "y" or pstart == "start" or pstart == "yes":
+        print("Here is the current grid: ")
+        gridraw(row1, row2, row3)
+        while validmove == False:
+            try:
+                urow = int(input("which row do you want to play? (between 1 and 3) "))
+                if urow < 3 or urow > 1:
+                    
+                    validmove = True
+                    #remove this line later
+                    print("A")
+                else:
+                    print("invalid input, please enter a number between 1 and 3")
+            except ValueError:
+                print("invalid input, please enter a number")
+
+        while True:
+            #Bug here, loop fails to break i think
+            try:
+                ucol = int(input("which column do you want to play? (between 1 and 3) "))
+                ucol -= 1
+                if urow == 1:
+                    if row1[ucol] == "o" or row1[ucol] == "x":
+                        print("Invalid move, there is already a peice there")
+                elif urow == 2:
+                    if row2[ucol] == "o" or row1[ucol] == "x":
+                        print("Invalid move, there is already a peice there")
+                elif urow == 3:
+                    if row3[ucol] == "o" or row1[ucol] == "x":
+                        print("Invalid move, there is already a peice there")
+                elif ucol < 2 or ucol > 0:
+                    print("A")
+                    break
+                else:
+                    print("invalid input, please enter a number between 1 and 3")
+            except ValueError:
+                print("invalid input, please enter a number")
+        #grid update
+        print(urow, ucol)
+        if urow == 1:
+            print(row1[ucol])
