@@ -1,0 +1,9 @@
+myspace = []
+for i in range(3):
+    uinp = input("What would you like to add to the list? ").strip().title()
+    myspace.append(uinp)
+    print("Added!")
+
+print("Here is the list: ")
+for x in myspace:
+    print(x)
