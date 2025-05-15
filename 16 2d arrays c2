@@ -1,0 +1,48 @@
+count= 1
+count2 = 1
+stuff = [
+            ["1", "2", "3", "4"],
+            ["a", "b", "c", "d"],
+            ["I", "II", "III", "IV"],
+            ]
+
+for arrays in stuff:
+    print("Section {}:".format(count))
+    count+=1
+    for items in arrays:
+        print(items)
+
+print("")
+while True:
+    change = input("What value do you want to change (type 'exit' to stop)? ").strip()
+    if change == "exit" or change == "Exit":
+        print("Exiting the program")
+        print("...")
+        print("...")
+        print("Exit successful!")
+        break
+    else:
+        new_item = input("What do you want to replace it with? ")
+        for arrays in stuff:
+            x = 0
+            for items in arrays:
+                if items == change:
+                    arrays.pop(x)
+                    arrays.insert(x, new_item)
+                x += 1
+    for arrays in stuff:
+        print("Section {}:".format(count))
+        count+=1
+        for items in arrays:
+            print(items)
+
+
+
+print("")
+print("final list: ")
+print("")
+for arrays in stuff:
+    print("Section {}:".format(count2))
+    count2 += 1
+    for items in arrays:
+        print(items)
