@@ -1,0 +1,6 @@
+outer_array = []
+innerarray1 = ["1", "2"]
+innerarray2 = ["3", "4"]
+outer_array.append(innerarray1)
+outer_array.append(innerarray2)
+print(outer_array)
