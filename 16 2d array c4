@@ -1,0 +1,7 @@
+outer = []
+inner_one = []
+inner_two = []
+print(outer)
+outer.append(inner_one)
+outer.append(inner_two)
+print(outer)
