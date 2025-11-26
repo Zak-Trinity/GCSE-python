@@ -1,0 +1,22 @@
+statements = []
+current_str = ""
+while True:
+    current_str = input("Enter a string you want to add ('exit' to finish), write /n to move to a new line: ").strip().lower()
+    if current_str == "exit":
+        break
+    else:
+        statements.append(current_str)
+
+f = open("text_zone.txt", "w")
+for i in range(len(statements)):
+    statement_cur = statements[i]
+    if statement_cur == "/n":
+        f.write("""
+""")
+    else:
+        f.write(statements[i])
+        f.write(" ")
+
+f.close()
+print("")
+print("go and look at the file, it is called 'file handling' in the same folder as where this program is store")
