@@ -1,0 +1,8 @@
+names = ["Bob", "Jeff", "Dave", "Bob", "A"]
+f = open("names.txt", "w")
+for i in range(len(names)):
+    f.write(names[i])
+    f.write("""
+""")
+
+f.close()
