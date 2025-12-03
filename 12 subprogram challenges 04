@@ -1,0 +1,39 @@
+def one_player():
+    print("Entering 1 player mode ...")
+
+def two_player():
+    print("Entering 2 player mode ...")
+
+def online():
+    print("Entering online mode...")
+
+def exit():
+    print("Exiting game, thanks for playing!")
+
+check = False
+def menu_choice(mode):
+    if mode == "1":
+        one_player()
+        check = True
+    elif mode == "2":
+        two_player()
+        check = True
+    elif mode == "3":
+        online()
+        check = True
+    elif mode == "4":
+        exit()
+        check = True
+    else:
+        check = False
+    return check
+
+while check == False:
+    user_choice = input("""Which gamemode do you want?
+1 - One player
+2 - Two player
+3 - Online
+4 - Exit game
+
+Please enter the number: """)
+    check = menu_choice(user_choice)
