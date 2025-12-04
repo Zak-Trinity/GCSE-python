@@ -1,0 +1,26 @@
+def exit():
+    print("Exiting ...")
+
+def timetable_get():
+    while True:
+        time = int(input("What time do you want (between 0 - 12): "))
+        if time >= 0 and time <= 12:
+            break
+    return time
+
+def timetable_print(time):
+    print(f"The time you have selected is {time}")
+
+def menu():
+    while True:
+        choice = int(input("Press 1 to go to timetable, press 2 to exit. "))
+        if choice == 1:
+            time = timetable_get()
+            timetable_print(time)
+            break
+        elif choice == 2:
+            exit()
+            break
+        else:
+            print("Invalid input")
+menu()
