@@ -1,0 +1,81 @@
+end = False
+
+def exit():
+    print("Exiting ...")
+    end = True
+    return end
+
+def timetable_get():
+    while True:
+        time = int(input("What time do you want (between 0 - 12): "))
+        if time >= 0 and time <= 12:
+            break
+    return time
+
+def timetable_print(time):
+    print(f"The time you have selected is {time}")
+
+def addition():
+    num_1 = int(input("Enter a number: "))
+    num_2 = int(input("Enter another: "))
+    print(f"{num_1} + {num_2} = {num_1 + num_2}")
+
+def subtraction():
+    num_1 = int(input("Enter a number: "))
+    num_2 = int(input("Enter another: "))
+    print(f"{num_1} - {num_2} = {num_1 - num_2}")
+
+def multiplication():
+    num_1 = int(input("Enter a number: "))
+    num_2 = int(input("Enter another: "))
+    print(f"{num_1} x {num_2} = {num_1 * num_2}")
+
+def division():
+    num_1 = int(input("Enter a number: "))
+    num_2 = int(input("Enter another: "))
+    print(f"{num_1} ÷ {num_2} = {num_1 / num_2}")
+
+def clear_division():
+    num_1 = int(input("Enter a number: "))
+    num_2 = int(input("Enter another: "))
+    print(f"{num_1} ÷ {num_2} = {num_1 // num_2} remainder {num_1 % num_2}")
+
+def menu():
+    choice = int(input("""Press 1 to go to timetable, press 2 to add and 3 to subtract, 4 to multiply,
+5 to divide and 6 to divide (with a remainder shown) and 7 to exit. """))
+    while True:
+        if choice == 1:
+            time = timetable_get()
+            timetable_print(time)
+            print("")
+            end = False
+            break
+        elif choice == 2:
+            addition()
+            end = False
+        elif choice == 3:
+            subtraction()
+            end = False
+        elif choice == 4:
+            multiplication()
+            end = False
+        elif choice == 5:
+            division()
+            end = False
+        elif choice == 6:
+            clear_division()
+            end  = False
+        elif choice == 7:
+            end = exit()
+            break
+        else:
+            print("Invalid input")
+        print("")
+        choice = int(input("""Press 1 to go to timetable, press 2 to add and 3 to subtract, 4 to multiply,
+5 to divide and 6 to divide (with a remainder shown) and 7 to exit. """))
+    return end
+
+while end == False:
+    end = menu()
+    if end == True:
+        break
